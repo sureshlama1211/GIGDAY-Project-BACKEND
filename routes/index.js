@@ -1,5 +1,7 @@
 const signUpRoute = require('./signUpRoute')
 const logInRoute = require('./loginroute')
+// const testEmailRoute = require('./testEmailRoute')
+const verifyEmailRoute = require('./verifyEmailRoute')
 const{
     updategig,
     getgig,
@@ -9,12 +11,14 @@ const{
 
 
 const routes = [
+    verifyEmailRoute,
     signUpRoute,
     logInRoute,
     updategig,
     getgig,
     getAllgig,
-    deletegig
+    deletegig,
+    // testEmailRoute
 
 ]
 

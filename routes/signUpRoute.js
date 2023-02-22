@@ -5,6 +5,9 @@ const connectDB = require('../db/connect')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+//for generating the verification string
+const {uuid,v4} = require('uuid');
+const sendEmail = require('../util/sendEmail')
 
 const signUpRoute ={
     path:'/api/signup',
@@ -14,18 +17,37 @@ const signUpRoute ={
         const db =connectDB(process.env.MONGO_URI);
         const user = await User.findOne({email});
         if(user){
-            res.sendStatus(409);
+            res.status(409).json({message:'user already exists'});
 
         }
         //for encrypting password
         const passwordHash = await bcrypt.hash(password,10);
 
+        //verification string which is send to the user
+        const verificationString = v4();
+
         const result = await User.create({
             email,
             passwordHash, 
-            isVerified:false
+            isVerified:false,
+            verificationString,
         });
         const{insertedId} =result;
+        try{
+            await sendEmail({
+                to:email,
+                from:'sonamhyolmo.223@outlook.com',
+                subject:'verifiy',
+                text:`thank you hai:
+                http://localhost:3000/verify-email/${verificationString}`,
+
+            });
+            console.log('sendEmail')
+        }
+        catch(e){
+            console.log(e);
+            res.sendStatus(500);
+        }
         jwt.sign({
             id: insertedId,
             email,

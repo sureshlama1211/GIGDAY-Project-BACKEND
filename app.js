@@ -9,10 +9,19 @@ require('dotenv').config()
 //import notFound from middleware
 
 
-//importing signup route
+//importing cors
+const cors = require('cors')
+
 
 
 //middleware
+
+app.use(cors());
+
+
+// middleware
+
+
 app.use(express.json())
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

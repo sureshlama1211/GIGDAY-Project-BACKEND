@@ -14,6 +14,12 @@ const userSchema = mongoose.Schema({
         type:String,
         trim:true,
     },
+    passwordResetCode:{
+        type:String,
+    },
+    verificationString:{
+        type:String,
+    },
     FirstName:{
         type:String,
         
