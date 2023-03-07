@@ -1,87 +1,68 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    email:{
-        type:String,
-        trim:true,
-        
-    },
-    passwordHash:{
-        type:String,
-        trim:true,
-    },
-    isVerified:{
-        type:String,
-        trim:true,
-    },
-    passwordResetCode:{
-        type:String,
-    },
-    verificationString:{
-        type:String,
-    },
-    FirstName:{
-        type:String,
-        
-        trim:true
-    },
-    LastName:{
-        type:String,
-        
-        trim:true
-    },
-    PhoneNumber:{
-        type:Number,
-        
-        trim:true
-    },
-    Address:{
-        type:String,
-        
-        trim:true
-    },
-    Birthday:{
-        type:String,
-        
-        trim:true
-    },
-    Gender:{
-        type:String,
-    
-        trim:true
-    },
-    profilePhoto:{
-        type:String,
+  email: {
+    type: String,
+    trim: true,
+  },
+  passwordHash: {
+    type: String,
+    trim: true,
+  },
+  isVerified: {
+    type: String,
+    trim: true,
+  },
+  passwordResetCode: {
+    type: String,
+  },
+  verificationString: {
+    type: String,
+  },
+  role: {
+    type: String,
+  },
 
-        trim:true
-
-    },
-    SkillLevel:{
-        type:String,
-        
-        trim:true
-    },
-    yearOfExpereince:{
-        type:Number,
-        
-        trim:true
-    },
-    Genre:{
-        type:String,
-        
-        trim:true
-    },
-    Bio:{
-        type:String,
-        
-        trim:true
-    },
-    youtubeUrl:{
-        type:String,
-        
-        trim:true
-    }
-    
-})
+  //
+  profilepicture: {
+    type: String,
+  },
+  firstname: {
+    type: String,
+  },
+  lastname: {
+    type: String,
+  },
+  phonenumber: {
+    type: Number,
+  },
+  address: {
+    type: String,
+  },
+  dateofbiirth: {
+    type: Date,
+  },
+  Gender: {
+    type: String,
+  },
+  artisttype: {
+    type: String,
+  },
+  skilllevel: {
+    type: String,
+  },
+  Genre: {
+    type: String,
+  },
+  yearsofexpereince: {
+    type: Number,
+  },
+  socialmedialink: {
+    type: String,
+  },
+  bio: {
+    type: String,
+  },
+});
 
 module.exports = mongoose.model("User", userSchema);

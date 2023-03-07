@@ -13,11 +13,14 @@ const signUpRoute ={
     path:'/api/signup',
     method:'post',
     handler:async(req,res)=>{
-        const {email,password} = req.body;
+        console.log(req.body);
+        const {email,password, role} = req.body;
         const db =connectDB(process.env.MONGO_URI);
         const user = await User.findOne({email});
+        
         if(user){
             res.status(409).json({message:'user already exists'});
+            console.log('user existed')
 
         }
         //for encrypting password
@@ -31,14 +34,15 @@ const signUpRoute ={
             passwordHash, 
             isVerified:false,
             verificationString,
+            role
         });
         const{insertedId} =result;
         try{
             await sendEmail({
                 to:email,
                 from:'sonamhyolmo.223@outlook.com',
-                subject:'verifiy',
-                text:`thank you hai:
+                subject:'Please Verify Your Email',
+                text:`Thanks For Signing! To verify your email,click here:
                 http://localhost:3000/verify-email/${verificationString}`,
 
             });
@@ -52,6 +56,8 @@ const signUpRoute ={
             id: insertedId,
             email,
             isVerified: false,
+            // role
+          
         },
         process.env.JWT_SECRET,
         {
