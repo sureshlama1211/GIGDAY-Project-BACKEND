@@ -1,20 +1,19 @@
 const signUpRoute = require("./signUpRoute");
 const logInRoute = require("./loginroute");
-const loginasrestaurant = require("./loginasrestaurant");
+const loginasrestaurant = require("./updateprofilerestaurant");
 // const testEmailRoute = require('./testEmailRoute')
 const verifyEmailRoute = require("./verifyEmailRoute");
-const { updategig, getgig, getAllgig, deletegig, addgig } = require("./Gig");
+const getartist = require("./getartist");
+const { getAllgig, addgig } = require("./Gig");
 
 const routes = [
   verifyEmailRoute,
   signUpRoute,
   logInRoute,
-  updategig,
-  getgig,
   getAllgig,
-  deletegig,
   addgig,
   loginasrestaurant,
+  getartist,
   // testEmailRoute
 ];
 

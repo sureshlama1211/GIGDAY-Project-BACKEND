@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   email: {
     type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
     trim: true,
   },
   passwordHash: {
@@ -12,6 +15,9 @@ const userSchema = mongoose.Schema({
   isVerified: {
     type: String,
     trim: true,
+  },
+  isformfilled: {
+    type: Boolean,
   },
   passwordResetCode: {
     type: String,
@@ -24,7 +30,7 @@ const userSchema = mongoose.Schema({
   },
 
   //
-  profilepicture: {
+  profilePicture: {
     type: String,
   },
   firstname: {
@@ -39,25 +45,25 @@ const userSchema = mongoose.Schema({
   address: {
     type: String,
   },
-  dateofbiirth: {
+  date: {
     type: Date,
   },
-  Gender: {
+  gender: {
     type: String,
   },
-  artisttype: {
+  band: {
     type: String,
   },
-  skilllevel: {
+  skill: {
     type: String,
   },
-  Genre: {
+  genre: {
     type: String,
   },
-  yearsofexpereince: {
+  expereince: {
     type: Number,
   },
-  socialmedialink: {
+  socialmedia: {
     type: String,
   },
   bio: {

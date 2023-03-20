@@ -19,6 +19,7 @@ const loginasrestaurant = {
       const updateprofile = await User.findOneAndUpdate(
         { email: userEmail },
         req.body,
+
         {
           new: true,
           runValidators: false,

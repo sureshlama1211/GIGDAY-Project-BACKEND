@@ -15,7 +15,7 @@ const logInRoute = {
     if (!user) {
       return res.sendStatus(401);
     }
-    const { _id: id, isVerified, passwordHash } = user;
+    const { _id: id, isVerified, passwordHash, isformfilled } = user;
     const isCorrect = await bcrypt.compare(password, passwordHash);
     console.log(isCorrect);
     if (isCorrect) {
@@ -24,7 +24,7 @@ const logInRoute = {
         res.status(401).json({ message: "account has not been verified" });
       }
       jwt.sign(
-        { id, isVerified, email, role: user.role },
+        { id, isVerified, email, role: user.role, isformfilled },
         process.env.JWT_SECRET,
         { expiresIn: "2d" },
         (err, token) => {
