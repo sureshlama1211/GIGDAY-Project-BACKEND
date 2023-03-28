@@ -19,7 +19,7 @@ const signUpRoute = {
 
     if (user) {
       console.log("user already existed");
-      res.status(409).json({ message: "user already exists" });
+      return res.status(409).json({ message: "user already exists" });
     }
     //for encrypting password
     const passwordHash = await bcrypt.hash(password, 10);
@@ -32,6 +32,7 @@ const signUpRoute = {
       passwordHash,
       isVerified: false,
       isformfilled: false,
+      isbooked: false,
       verificationString,
       role,
     });
@@ -55,6 +56,7 @@ const signUpRoute = {
         email,
         isVerified: false,
         isformfilled: false,
+        isbooked: false,
         // role
       },
       process.env.JWT_SECRET,

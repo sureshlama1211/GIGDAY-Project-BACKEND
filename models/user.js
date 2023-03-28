@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
+  profile: {
+    data: Buffer,
+    contentType: String,
+  },
   email: {
     type: String,
     required: true,
@@ -68,6 +72,9 @@ const userSchema = mongoose.Schema({
   },
   bio: {
     type: String,
+  },
+  isbooked: {
+    type: Boolean,
   },
 });
 

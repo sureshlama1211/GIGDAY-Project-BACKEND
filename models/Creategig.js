@@ -51,5 +51,8 @@ const GigSchema = new mongoose.Schema({
   payment: {
     type: Number,
   },
+  isapplied: {
+    type: Boolean,
+  },
 });
 module.exports = mongoose.model("Creategig", GigSchema);

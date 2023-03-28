@@ -1,9 +1,35 @@
 const connectDB = require("../db/connect");
 const User = require("../models/user");
+//importing multer for profile picture
+const multer = require("multer");
+
+//for the path of the file
+const imgconfig = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./uploads");
+  },
+  filename: (req, file, callback) => {
+    callback(null, `image-${Date.now()}.${file.originalname}`);
+  },
+});
+//filefilter
+const isImage = (req, file, callback) => {
+  //condition for only file
+  if (file.mimetype.startwith("image")) {
+    callback(null, true);
+  } else {
+    callback(new Error("only image is allowed"));
+  }
+};
+const upload = multer({
+  storage: imgconfig,
+  fileFilter: isImage,
+});
 
 const loginasrestaurant = {
   path: "/api/loginasrestaurant/:email",
   method: "patch",
+  upload: upload.single("profile"),
 
   handler: async (req, res) => {
     console.log(req.params.id);
@@ -15,6 +41,7 @@ const loginasrestaurant = {
 
     // console.log("l1.id");
     // console.log({ _id: userID });
+
     try {
       const updateprofile = await User.findOneAndUpdate(
         { email: userEmail },

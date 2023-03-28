@@ -5,6 +5,10 @@ const loginasrestaurant = require("./updateprofilerestaurant");
 const verifyEmailRoute = require("./verifyEmailRoute");
 const getartist = require("./getartist");
 const { getAllgig, addgig } = require("./Gig");
+const { editprofile } = require("./editprofile");
+const { beforeedit } = require("./editprofile");
+const { getBookings } = require("./bookingrequest");
+const { bookingrequest } = require("./bookingrequest");
 
 const routes = [
   verifyEmailRoute,
@@ -15,6 +19,10 @@ const routes = [
   loginasrestaurant,
   getartist,
   // testEmailRoute
+  editprofile,
+  beforeedit,
+  bookingrequest,
+  getBookings,
 ];
 
 module.exports = routes;
