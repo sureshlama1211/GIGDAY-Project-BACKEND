@@ -3,12 +3,12 @@ const { ObjectId } = mongoose.Schema;
 const BookingSchema = mongoose.Schema({
   bookedBy: {
     type: ObjectId,
-    require: true,
+    required: true,
     ref: "User",
   },
   bookedTo: {
     type: ObjectId,
-    require: true,
+    required: true,
     ref: "User",
   },
   gigname: {

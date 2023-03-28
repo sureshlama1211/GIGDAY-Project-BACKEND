@@ -2,34 +2,59 @@ const connectDB = require("../db/connect");
 const User = require("../models/user");
 //importing multer for profile picture
 const multer = require("multer");
+//importing fs to read folder
+const fs = require("fs");
+// for reading a extension name of a file, image etc
+const path = require("path");
 
 //for the path of the file
-const imgconfig = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "./uploads");
+const storage = multer.diskStorage({
+  //cb is call back(where to send)
+  destination: (req, file, cb) => {
+    let fileDestination = "public/uploads/";
+    //check if directory exists
+    if (!fs.existsSync(fileDestination)) {
+      fs.mkdirSync(fileDestination, { recursive: true });
+      //recursive:true means it creates parent folder as well as sub folder
+      cb(null, fileDestination);
+    } else {
+      cb(null, fileDestination);
+    }
   },
-  filename: (req, file, callback) => {
-    callback(null, `image-${Date.now()}.${file.originalname}`);
+  filename: (req, file, cb) => {
+    let filename = path.basename(
+      file.originalname,
+      path.extname(file.originalname)
+    );
+    //path.basename(abc.jpg,.jpg)
+    // returns abc (the extension is removed due to path.basename)
+    let ext = path.extname(file.originalname);
+    cb(null, filename + "_" + Date.now() + ext);
   },
 });
-//filefilter
-const isImage = (req, file, callback) => {
-  //condition for only file
-  if (file.mimetype.startwith("image")) {
-    callback(null, true);
+
+let imagefilter = (req, file, cb) => {
+  if (
+    !file.originalname.match(/\.(jpg|png|jpeg|svg|jfif|JPG|PNG|JPEG|SVG|JFIF)$/)
+  ) {
+    return cb(new Error("you can upload image file only"), false);
   } else {
-    callback(new Error("only image is allowed"));
+    cb(null, true);
   }
 };
-const upload = multer({
-  storage: imgconfig,
-  fileFilter: isImage,
+
+let upload = multer({
+  storage: storage,
+  fileFilter: imagefilter,
+  limit: {
+    fileSize: 2000000, //kb or 2 mb
+  },
 });
 
 const loginasrestaurant = {
   path: "/api/loginasrestaurant/:email",
   method: "patch",
-  upload: upload.single("profile"),
+  upload: upload.single("profile_image"),
 
   handler: async (req, res) => {
     console.log(req.params.id);

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  profile: {
+  profile_image: {
     data: Buffer,
     contentType: String,
   },
