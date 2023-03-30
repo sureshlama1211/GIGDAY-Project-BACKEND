@@ -43,7 +43,9 @@ const getBookings = {
     }
 
     if (req.query.role === "restaurant") {
-      userBooking = await Booking.find({ bookedBy: req.params.userid });
+      userBooking = await Booking.find({
+        bookedBy: req.params.userid,
+      }).populate(bookedBy);
     }
     if (!userBooking) {
       res.status(500).json({ error: "something went wrong" });

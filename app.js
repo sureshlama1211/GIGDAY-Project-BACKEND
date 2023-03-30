@@ -12,14 +12,16 @@ require("dotenv").config();
 const cors = require("cors");
 
 //for multer
-app.use("/uploads", express.static("./uploads"));
-
+app.use(express.json());
+app.use(express.static("public"));
+app.use("/public/uploads", express.static("public/uploads"));
 //middleware
 
 app.use(cors());
 
 // middleware
 
+//for cors
 app.use(express.json());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
