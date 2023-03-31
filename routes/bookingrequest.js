@@ -39,19 +39,22 @@ const getBookings = {
     console.log(req.query);
     console.log(req.params);
     if (req.query.role === "artist") {
-      userBooking = await Booking.find({ bookedTo: req.params.userid });
+      userBooking = await Booking.find({
+        bookedTo: req.params.userid,
+      }).populate("bookedBy");
     }
 
     if (req.query.role === "restaurant") {
       userBooking = await Booking.find({
         bookedBy: req.params.userid,
-      }).populate(bookedBy);
+      });
     }
     if (!userBooking) {
       res.status(500).json({ error: "something went wrong" });
     }
     console.log("k cha yr", userBooking);
     res.send(userBooking);
+    console.log("populate vayo", userBooking);
   },
 };
 
