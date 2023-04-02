@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const GigSchema = new mongoose.Schema({
-  // gigProfile: {
-  //   type: String,
-  // },
+  gigProfile: {
+    type: String,
+  },
 
   gigName: {
     type: String,
@@ -52,7 +52,10 @@ const GigSchema = new mongoose.Schema({
     type: Number,
   },
   isapplied: {
-    type: Boolean,
+    type: false,
+  },
+  description: {
+    type: String,
   },
 });
 module.exports = mongoose.model("Creategig", GigSchema);

@@ -9,6 +9,7 @@ const { editprofile } = require("./editprofile");
 const { beforeedit } = require("./editprofile");
 const { getBookings } = require("./bookingrequest");
 const { bookingrequest } = require("./bookingrequest");
+const { bookingstatus } = require("./bookingrequest");
 
 const routes = [
   verifyEmailRoute,
@@ -23,6 +24,7 @@ const routes = [
   beforeedit,
   bookingrequest,
   getBookings,
+  bookingstatus,
 ];
 
 module.exports = routes;

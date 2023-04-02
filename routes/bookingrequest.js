@@ -58,4 +58,31 @@ const getBookings = {
   },
 };
 
-module.exports = { bookingrequest, getBookings };
+//for updating the booking after the artist accepts the request
+const bookingstatus = {
+  path: "/api/booking/:id",
+  method: "put",
+
+  handler: async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    console.log(" k cha hajur", req.body);
+    try {
+      const booking = await Booking.findById(id);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+      booking.status = status;
+      console.log(booking, "hawa yr");
+
+      await booking.save();
+      res.json(booking);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  },
+};
+
+module.exports = { bookingrequest, getBookings, bookingstatus };

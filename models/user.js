@@ -64,7 +64,7 @@ const userSchema = mongoose.Schema({
     type: String,
   },
   expereince: {
-    type: Number,
+    type: String,
   },
   socialmedia: {
     type: String,
