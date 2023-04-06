@@ -10,7 +10,8 @@ const { beforeedit } = require("./editprofile");
 const { getBookings } = require("./bookingrequest");
 const { bookingrequest } = require("./bookingrequest");
 const { bookingstatus } = require("./bookingrequest");
-
+const { addevent } = require("./Event");
+const { getallevent } = require("./Event");
 const routes = [
   verifyEmailRoute,
   signUpRoute,
@@ -25,6 +26,8 @@ const routes = [
   bookingrequest,
   getBookings,
   bookingstatus,
+  addevent,
+  getallevent,
 ];
 
 module.exports = routes;
