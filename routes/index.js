@@ -3,8 +3,8 @@ const logInRoute = require("./loginroute");
 const loginasrestaurant = require("./updateprofilerestaurant");
 // const testEmailRoute = require('./testEmailRoute')
 const verifyEmailRoute = require("./verifyEmailRoute");
-const getartist = require("./getartist");
-const { getAllgig, addgig } = require("./Gig");
+const { getartist, getsingleartist } = require("./getartist");
+const { getAllgig, addgig, getgig } = require("./Gig");
 const { editprofile } = require("./editprofile");
 const { beforeedit } = require("./editprofile");
 const { getBookings } = require("./bookingrequest");
@@ -28,6 +28,8 @@ const routes = [
   bookingstatus,
   addevent,
   getallevent,
+  getgig,
+  getsingleartist,
 ];
 
 module.exports = routes;

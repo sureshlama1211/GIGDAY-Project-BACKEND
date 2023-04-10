@@ -22,14 +22,6 @@ const GigSchema = new mongoose.Schema({
     // reuired:[true,'must provide the venue name'],
     trim: true,
     // maxlength: [20, "max venue name should be of 20 characters long"],
-    get: function (value) {
-      return value
-        ? new Date(value).toISOString().replace(/T/, " ").replace(/\..+/, "")
-        : "";
-    },
-    set: function (value) {
-      return value ? new Date(value).toISOString() : "";
-    },
   },
   paymenttype: {
     type: String,

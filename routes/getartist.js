@@ -22,4 +22,19 @@ const getartist = {
     }
   },
 };
-module.exports = getartist;
+
+const getsingleartist = {
+  path: "/api/singleuser/:email",
+  method: "get",
+  handler: async (req, res) => {
+    const db = connectDB(process.env.MONGO_URI);
+    const userEmail = req.params.email;
+
+    const artist = await user.findOne({ email: userEmail });
+    if (!artist) {
+      return res.sendStatus(400);
+    }
+    res.status(200).json({ artist });
+  },
+};
+module.exports = { getartist, getsingleartist };

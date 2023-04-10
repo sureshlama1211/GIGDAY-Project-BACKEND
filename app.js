@@ -19,8 +19,6 @@ app.use("/public/uploads", express.static("public/uploads"));
 
 app.use(cors());
 
-// middleware
-
 //for cors
 app.use(express.json());
 app.use(function (req, res, next) {
@@ -36,9 +34,6 @@ app.use(function (req, res, next) {
 routes.forEach((route) => {
   app[route.method](route.path, route.handler);
 });
-//route for signup
-
-//handle for 404
 
 const port = process.env.PORT || 5000;
 const start = async () => {

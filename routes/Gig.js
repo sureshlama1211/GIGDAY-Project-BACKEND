@@ -65,19 +65,20 @@ const getAllgig = {
   },
 };
 
-// const getgig = {
-//   path: "/api/gigs/:id",
-//   method: "get",
-//   handler: async (req, res) => {
-//     const db = connectDB(process.env.MONGO_URI);
-//     const { id: gigID } = req.params;
-//     const gig = await Creategig.findOne({ _id: gigID });
-//     if (!gig) {
-//       return res.sendStatus(400);
-//     }
-//     res.status(200).json({ gig });
-//   },
-// };
+const getgig = {
+  path: "/api/gigs/:id",
+  method: "get",
+  handler: async (req, res) => {
+    const db = connectDB(process.env.MONGO_URI);
+    const { id: gigID } = req.params;
+
+    const gig = await Creategig.findOne({ _id: gigID });
+    if (!gig) {
+      return res.sendStatus(400);
+    }
+    res.status(200).json({ gig });
+  },
+};
 
 const addgig = {
   path: "/api/gigs",
@@ -142,5 +143,6 @@ module.exports = {
   getAllgig,
   // getgig,
   // deletegig,
+  getgig,
   addgig,
 };
