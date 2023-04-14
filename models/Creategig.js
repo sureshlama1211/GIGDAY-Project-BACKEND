@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { ObjectId } = mongoose.Schema;
 const GigSchema = new mongoose.Schema({
   gigProfile: {
     type: String,
@@ -48,6 +48,11 @@ const GigSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+  },
+  createdBy: {
+    type: ObjectId,
+    required: true,
+    ref: "User",
   },
 });
 module.exports = mongoose.model("Creategig", GigSchema);

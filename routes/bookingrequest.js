@@ -85,4 +85,20 @@ const bookingstatus = {
   },
 };
 
-module.exports = { bookingrequest, getBookings, bookingstatus };
+const bookingdetail = {
+  path: "/api/bookingdetail/:id",
+  method: "get",
+  handler: async (req, res) => {
+    const db = connectDB(process.env.MONGO_URI);
+    const { id: bookingID } = req.params;
+    const book = await Booking.find({ bookedBy: bookingID }).populate(
+      "bookedTo"
+    );
+    if (!book) {
+      return res.sendStatus(400);
+    }
+    res.status(200).json({ book });
+  },
+};
+
+module.exports = { bookingrequest, getBookings, bookingstatus, bookingdetail };

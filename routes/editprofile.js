@@ -12,7 +12,7 @@ const path = require("path");
 const storage = multer.diskStorage({
   //cb is call back(where to send)
   destination: (req, file, cb) => {
-    let fileDestination = "public/uploads/";
+    let fileDestination = "public/uploads/updated/";
     //check if directory exists
     if (!fs.existsSync(fileDestination)) {
       fs.mkdirSync(fileDestination, { recursive: true });
@@ -93,6 +93,7 @@ const editprofile = {
       // console.log({ _id: userID });
       try {
         const update = { ...req.body, profile_image: req.file.path };
+        console.log(update, "checking upadte");
         const editprofile = await User.findOneAndUpdate(
           { email: userEmail },
           update,

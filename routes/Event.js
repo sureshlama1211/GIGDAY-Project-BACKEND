@@ -79,7 +79,23 @@ const getallevent = {
   },
 };
 
+//for getting single event
+const singleevent = {
+  path: "/api/singleevent/:id",
+  method: "get",
+  handler: async (req, res) => {
+    const db = connectDB(process.env.MONGO_URI);
+    const { id: eventID } = req.params;
+    const allevent = await Createevent.findOne({ _id: eventID });
+    if (!allevent) {
+      return res.sendStauts(400);
+    }
+    res.status(200).json({ allevent });
+  },
+};
+
 module.exports = {
   addevent,
   getallevent,
+  singleevent,
 };

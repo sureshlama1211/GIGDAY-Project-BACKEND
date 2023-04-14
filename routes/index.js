@@ -8,10 +8,11 @@ const { getAllgig, addgig, getgig } = require("./Gig");
 const { editprofile } = require("./editprofile");
 const { beforeedit } = require("./editprofile");
 const { getBookings } = require("./bookingrequest");
-const { bookingrequest } = require("./bookingrequest");
+const { bookingrequest, bookingdetail } = require("./bookingrequest");
 const { bookingstatus } = require("./bookingrequest");
-const { addevent } = require("./Event");
+const { addevent, singleevent } = require("./Event");
 const { getallevent } = require("./Event");
+const { applyrequest, getAppliedGig, applygigstatus } = require("./applytogig");
 const routes = [
   verifyEmailRoute,
   signUpRoute,
@@ -30,6 +31,11 @@ const routes = [
   getallevent,
   getgig,
   getsingleartist,
+  singleevent,
+  bookingdetail,
+  applyrequest,
+  getAppliedGig,
+  applygigstatus,
 ];
 
 module.exports = routes;
