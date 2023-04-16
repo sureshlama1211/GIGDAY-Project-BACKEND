@@ -137,6 +137,22 @@ const addgig = {
 //     res.status(200).json({ gig });
 //   },
 // };
+//for getting created gig detail
+const gigdetail = {
+  path: "/api/createdgig/:id",
+  method: "get",
+  handler: async (req, res) => {
+    const db = connectDB(process.env.MONGO_URI);
+    const { id: gigID } = req.params;
+    const gig = await Creategig.find({ createdBy: gigID }).populate(
+      "appliedGig"
+    );
+    if (!gig) {
+      return res.sendStatus(400);
+    }
+    res.status(200).json({ gig });
+  },
+};
 
 module.exports = {
   // updategig,
@@ -145,4 +161,5 @@ module.exports = {
   // deletegig,
   getgig,
   addgig,
+  gigdetail,
 };

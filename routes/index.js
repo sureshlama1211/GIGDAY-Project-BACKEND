@@ -4,7 +4,7 @@ const loginasrestaurant = require("./updateprofilerestaurant");
 // const testEmailRoute = require('./testEmailRoute')
 const verifyEmailRoute = require("./verifyEmailRoute");
 const { getartist, getsingleartist } = require("./getartist");
-const { getAllgig, addgig, getgig } = require("./Gig");
+const { getAllgig, addgig, getgig, gigdetail } = require("./Gig");
 const { editprofile } = require("./editprofile");
 const { beforeedit } = require("./editprofile");
 const { getBookings } = require("./bookingrequest");
@@ -13,6 +13,7 @@ const { bookingstatus } = require("./bookingrequest");
 const { addevent, singleevent } = require("./Event");
 const { getallevent } = require("./Event");
 const { applyrequest, getAppliedGig, applygigstatus } = require("./applytogig");
+const khaltiPayment = require("./khalti");
 const routes = [
   verifyEmailRoute,
   signUpRoute,
@@ -36,6 +37,8 @@ const routes = [
   applyrequest,
   getAppliedGig,
   applygigstatus,
+  gigdetail,
+  khaltiPayment,
 ];
 
 module.exports = routes;
